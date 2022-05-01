@@ -1,5 +1,6 @@
 import 'package:fake_call_mobile/configurations/routes/route_generator.dart';
 import 'package:fake_call_mobile/configurations/themes/app_theme.dart';
+import 'package:fake_call_mobile/features/views/auth/screens/login_page.dart';
 import 'package:fake_call_mobile/features/views/main/screens/main_page.dart';
 import 'package:flutter/material.dart';
 
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
       title: 'Meow',
       theme: AppTheme.basic,
       debugShowCheckedModeBanner: false,
-      initialRoute: MainPage.route,
+      initialRoute: LoginPage.route,
       onGenerateRoute: RouteGenerator.generateRoute,
     );
   }
