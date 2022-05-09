@@ -1,15 +1,18 @@
 
-import 'package:fake_call_mobile/features/views/auth/screens/registration_page.dart';
+import 'package:fake_call_mobile/features/views/auth/screens/login_page.dart';
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
-  static const route = "/login";
+class RegistrationPage extends StatefulWidget {
+  const RegistrationPage({Key? key}) : super(key: key);
+
+  static const route = "/registration";
+
+
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<RegistrationPage> createState() => _RegistrationPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _RegistrationPageState extends State<RegistrationPage> {
 
   TextEditingController phoneNumberController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -24,12 +27,12 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
-          image: DecorationImage(
-            fit: BoxFit.cover,
-            image: AssetImage(
-              "assets/background/background_1.jpg",
+            image: DecorationImage(
+                fit: BoxFit.cover,
+                image: AssetImage(
+                  "assets/background/background_1.jpg",
+                )
             )
-          )
         ),
         child: ListView(
           physics: const ClampingScrollPhysics(),
@@ -41,7 +44,7 @@ class _LoginPageState extends State<LoginPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: const [
                 Text(
-                  "Login",
+                  "Sign Up",
                   style: TextStyle(
                     fontSize: 34,
                     fontWeight: FontWeight.bold,
@@ -60,7 +63,7 @@ class _LoginPageState extends State<LoginPage> {
                   child: TextField(
                     controller: phoneNumberController,
                     decoration: const InputDecoration(
-                      hintText: "E-Mail"
+                        hintText: "E-Mail"
                     ),
                     keyboardType: TextInputType.emailAddress,
                     textInputAction: TextInputAction.next,
@@ -80,19 +83,19 @@ class _LoginPageState extends State<LoginPage> {
                     controller: passwordController,
                     obscureText: obscurePassword,
                     decoration: InputDecoration(
-                      suffixIcon: IconButton(
-                        onPressed: () {
-                          setState(() {
-                            obscurePassword = !obscurePassword;
-                          });
-                        },
-                        icon: obscurePassword ? const Icon(
-                          Icons.visibility_outlined
-                        ) : const Icon(
-                            Icons.visibility_off_outlined
-                        )
-                      ),
-                      hintText: "Password"
+                        suffixIcon: IconButton(
+                            onPressed: () {
+                              setState(() {
+                                obscurePassword = !obscurePassword;
+                              });
+                            },
+                            icon: obscurePassword ? const Icon(
+                                Icons.visibility_outlined
+                            ) : const Icon(
+                                Icons.visibility_off_outlined
+                            )
+                        ),
+                        hintText: "Password"
                     ),
                     keyboardType: TextInputType.visiblePassword,
                     textInputAction: TextInputAction.send,
@@ -112,7 +115,7 @@ class _LoginPageState extends State<LoginPage> {
                   child: ElevatedButton(
                     onPressed: () {
                     },
-                    child: const Text("Sign In"),
+                    child: const Text("Register"),
                   ),
                 ),
               ],
@@ -124,23 +127,23 @@ class _LoginPageState extends State<LoginPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const Text(
-                  "Doesn't have an account?",
+                  "Have an account?",
                   style: TextStyle(
-                    color: Colors.black54
+                      color: Colors.black54
                   ),
                 ),
                 TextButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, RegistrationPage.route);
-                  },
-                  child: const Text(
-                    "Registration",
-                    style: TextStyle(
-                      decoration: TextDecoration.underline,
-                      color: Colors.black,
-                      fontWeight: FontWeight.normal
-                    ),
-                  )
+                    onPressed: () {
+                      Navigator.pushNamed(context, LoginPage.route);
+                    },
+                    child: const Text(
+                      "Sign In",
+                      style: TextStyle(
+                          decoration: TextDecoration.underline,
+                          color: Colors.black,
+                          fontWeight: FontWeight.normal
+                      ),
+                    )
                 )
               ],
             )
@@ -150,5 +153,6 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
+
 
 }
