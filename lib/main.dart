@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       title: 'Meow',
       theme: AppTheme.basic,
       debugShowCheckedModeBanner: false,
-      initialRoute: LoginPage.route,
+      initialRoute: MainPage.route,
       onGenerateRoute: RouteGenerator.generateRoute,
     );
   }
