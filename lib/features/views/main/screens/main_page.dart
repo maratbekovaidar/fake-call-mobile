@@ -14,6 +14,20 @@ class _MainPageState extends State<MainPage> {
 
   int _currentIndex = 0;
 
+  late PageController _pageController;
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController = PageController();
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,8 +40,20 @@ class _MainPageState extends State<MainPage> {
             )
           )
         ),
-        child: PageView(
-        ),
+        child: SizedBox.expand(
+          child: PageView(
+            controller: _pageController,
+            onPageChanged: (index) {
+              setState(() => _currentIndex = index);
+            },
+            children: <Widget>[
+              Container(color: Colors.blueGrey,),
+              Container(color: Colors.red,),
+              Container(color: Colors.green,),
+              Container(color: Colors.blue,),
+            ],
+          ),
+        )
       ),
 
       /// Bottom Navigation Bar
