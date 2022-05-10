@@ -56,6 +56,12 @@ class AppTheme {
         )
     ),
 
+    /// AppBar Theme
+    appBarTheme: const AppBarTheme(
+      color: Colors.transparent,
+      elevation: 0
+    )
+
   );
 
 }
