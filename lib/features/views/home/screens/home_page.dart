@@ -12,6 +12,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
+  bool searchBar = false;
   @override
   Widget build(BuildContext context) {
 
@@ -19,9 +20,18 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
       backgroundColor: Colors.transparent,
-      appBar: AppBar(),
+      appBar: AppBar(
+        toolbarHeight: 100,
+        title: const TextField(
+          decoration: InputDecoration(
+            hintText: "Search voice caller",
+            suffixIcon: Icon(Icons.search)
+          ),
+        ),
+      ),
       body: ListView(
         children: [
+          const SizedBox(height: 20),
 
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
