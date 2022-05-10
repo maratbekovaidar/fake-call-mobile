@@ -1,5 +1,6 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:fake_call_mobile/features/views/home/screens/home_page.dart';
+import 'package:fake_call_mobile/features/views/profile/screens/profile_page.dart';
 import 'package:flutter/material.dart';
 
 class MainPage extends StatefulWidget {
@@ -51,7 +52,7 @@ class _MainPageState extends State<MainPage> {
               const HomePage(),
               Container(color: Colors.red,),
               Container(color: Colors.green,),
-              Container(color: Colors.blue,),
+              const ProfilePage()
             ],
           ),
         )
@@ -63,6 +64,7 @@ class _MainPageState extends State<MainPage> {
         selectedIndex: _currentIndex,
         onItemSelected: (index) {
           setState(() => _currentIndex = index);
+          _pageController.animateToPage(index, duration: const Duration(milliseconds: 300), curve: Curves.ease);
         },
         items: <BottomNavyBarItem>[
           BottomNavyBarItem(
