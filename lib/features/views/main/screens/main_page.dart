@@ -1,4 +1,5 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
+import 'package:fake_call_mobile/features/views/home/screens/home_page.dart';
 import 'package:flutter/material.dart';
 
 class MainPage extends StatefulWidget {
@@ -47,7 +48,7 @@ class _MainPageState extends State<MainPage> {
               setState(() => _currentIndex = index);
             },
             children: <Widget>[
-              Container(color: Colors.blueGrey,),
+              const HomePage(),
               Container(color: Colors.red,),
               Container(color: Colors.green,),
               Container(color: Colors.blue,),
