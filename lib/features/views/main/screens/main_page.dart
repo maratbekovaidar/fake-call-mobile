@@ -1,5 +1,6 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:fake_call_mobile/features/views/home/screens/home_page.dart';
+import 'package:fake_call_mobile/features/views/map/screens/map_page.dart';
 import 'package:fake_call_mobile/features/views/profile/screens/profile_page.dart';
 import 'package:flutter/material.dart';
 
@@ -44,6 +45,7 @@ class _MainPageState extends State<MainPage> {
         ),
         child: SizedBox.expand(
           child: PageView(
+            physics: _currentIndex == 2 ? const NeverScrollableScrollPhysics() : null,
             controller: _pageController,
             onPageChanged: (index) {
               setState(() => _currentIndex = index);
@@ -51,7 +53,7 @@ class _MainPageState extends State<MainPage> {
             children: <Widget>[
               const HomePage(),
               Container(color: Colors.red,),
-              Container(color: Colors.green,),
+              const MapPage(),
               const ProfilePage()
             ],
           ),

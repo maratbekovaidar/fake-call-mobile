@@ -1,6 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="kz.maratbekovaidar.fake_call_mobile">
-   <application
+
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"/>
+    <application
         android:label="fake_call_mobile"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
@@ -30,5 +33,7 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+        <meta-data android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDJtloVzq-WOxjRu2spt82r2ZPWRXwE0v0"/>
     </application>
 </manifest>
