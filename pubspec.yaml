@@ -17,6 +17,19 @@ dependencies:
   google_maps_flutter: ^2.1.5
   permission_handler: ^9.2.0
   location: ^4.3.0
+  flutter_incoming_call: ^0.1.1
+  uuid: ^3.0.6
+  flutter_callkit_incoming: ^1.0.2
+  http: ^0.13.4
+  firebase_messaging: ^11.4.0
+  firebase_core: ^1.17.0
+  audioplayers: ^0.20.1
+  flutter_sound: ^9.2.12
+  audio_session: ^0.1.6+1
+  path_provider: ^2.0.10
+  mask_text_input_formatter: ^2.3.0
+  dio: ^4.0.6
+  image_picker: ^0.8.5+3
 
 dev_dependencies:
   flutter_test:

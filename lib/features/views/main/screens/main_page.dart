@@ -1,4 +1,5 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
+import 'package:fake_call_mobile/features/views/friends/screens/friends_page.dart';
 import 'package:fake_call_mobile/features/views/home/screens/home_page.dart';
 import 'package:fake_call_mobile/features/views/map/screens/map_page.dart';
 import 'package:fake_call_mobile/features/views/profile/screens/profile_page.dart';
@@ -50,11 +51,11 @@ class _MainPageState extends State<MainPage> {
             onPageChanged: (index) {
               setState(() => _currentIndex = index);
             },
-            children: <Widget>[
-              const HomePage(),
-              Container(color: Colors.red,),
-              const MapPage(),
-              const ProfilePage()
+            children: const <Widget>[
+              HomePage(),
+              FriendsPage(),
+              MapPage(),
+              ProfilePage()
             ],
           ),
         )

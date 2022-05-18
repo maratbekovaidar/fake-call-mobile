@@ -2,6 +2,8 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:fake_call_mobile/features/views/map/ui/map_style.dart';
+import 'package:fake_call_mobile/utils/services/voice_service.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
@@ -20,7 +22,76 @@ class _MapPageState extends State<MapPage> {
   final Completer<GoogleMapController> _controller = Completer();
   late GoogleMapController googleMapController;
 
-  var status = Permission.location.status;
+
+
+  late BitmapDescriptor pinLocationIcon;
+  void setCustomMapPin() async {
+
+    pinLocationIcon = await BitmapDescriptor.fromAssetImage(const ImageConfiguration(
+
+    ),
+        Platform.isIOS? 'assets/markerDefaultIOS':'assets/DefaultMarkerAndroid.png');
+  }
+
+  // List<LocationModel>? rests;
+  var status =  Permission.location.status;
+
+  final VoiceService _voiceService = VoiceService();
+
+  List<Marker> markersBuilder({required List<LocationModel> rests}) {
+    return List.generate(rests.length, (index) {
+      return Marker(
+        icon: pinLocationIcon,
+
+        markerId: MarkerId(rests[index].id.toString()),
+        position: LatLng(
+          double.parse(rests[index].latitude),
+          double.parse(rests[index].longitude)
+        ),
+        infoWindow: InfoWindow(
+          onTap: () {
+            Navigator.pushNamed(context, '/restaurant_details',
+                arguments: rests[index].id);
+          },
+
+          title: rests[index].username,
+          snippet: rests[index].phoneNumber,
+        ),
+      );
+    });
+  }
+
+  // void onMapCreated(GoogleMapController controller) {
+  //   googleMapController = controller;
+  //
+  //   _currentLocation(controller);
+  //
+  // }
+
+
+  List<LocationModel>? locations = [];
+
+  Set<Marker> getmarkers(List<Marker> markersToList) {
+    //markers to place on map
+
+    for (int i = 0; i < markersToList.length; i++) {
+      markers.add(markersToList[i]);
+    }
+
+    return markers;
+  }
+
+  void setLocations() async {
+    locations = await _voiceService.getAllLocations();
+    setState(() {
+
+    });
+  }
+
+
+  final Set<Marker> markers = {}; //markers for google map
+
+
 
   LatLng myLocation = const LatLng(37.43296265331129, -122.08832357078792);
   bool shareVisibility = false;
@@ -35,19 +106,12 @@ class _MapPageState extends State<MapPage> {
   @override
   void initState() {
     //custom marker
-    setCustomMapPin();
-    getLocationPermission();
     super.initState();
-  }
-
-  late BitmapDescriptor pinLocationIcon;
-  void setCustomMapPin() {
-
-    pinLocationIcon = BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueOrange);
-    //     .fromAssetImage(const ImageConfiguration(
-    //
-    // ),
-    //   Platform.isIOS? 'assets/images/new_design/markerDefaultIOS':'assets/images/new_design/DefaultMarkerAndroid.png');
+    getLocationPermission();
+    WidgetsBinding.instance!.addPostFrameCallback((_){
+      setLocations();
+      setCustomMapPin();
+    });
   }
 
 
@@ -73,6 +137,7 @@ class _MapPageState extends State<MapPage> {
             onMapCreated(controller);
           },
           circles: _shareMyLocation(),
+          markers: getmarkers(markersBuilder(rests: locations!)),
         ),
       ),
       floatingActionButton: FloatingActionButton.extended(
@@ -109,6 +174,7 @@ class _MapPageState extends State<MapPage> {
   void onMapCreated(GoogleMapController controller) {
     googleMapController = controller;
     _currentLocation(controller);
+    googleMapController.setMapStyle(MapStyle.mapStyle);
 
   }
 
